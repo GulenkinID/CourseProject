@@ -27,7 +27,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          <Users />
+          <Users key={users._id} users={users}/>
         </tbody>
       </table>
     </div>

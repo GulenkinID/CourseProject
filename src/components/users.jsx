@@ -2,10 +2,11 @@ import React from "react";
 import User from "./user";
 
 const Users = ({ users, ...rest }) => {
-    console.log(users)
   return (
     <>
-      <User />
+      {users.map((user) => (
+        <User key={user._id} user={user} />
+      ))}
     </>
   );
 };
@@ -76,4 +77,5 @@ export default Users;
 //         </table>
 //       )}
 //     </>
+// name={user.name} profession={user.profession.name}  completedMeetings={user.completedMeetings} 
 //   );

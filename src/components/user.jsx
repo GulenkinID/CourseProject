@@ -1,33 +1,37 @@
 import React from "react";
 import Qualitie from "./qualitie";
 import Bookmark from "./bookmark";
-const User = ({ user, ...rest }) => {
-
+const User = ({
+  _id,
+  name,
+  qualities,
+  profession,
+  completedMeetings,
+  rate,
+  onDelete,
+  bookmark,
+  onToggleBookMark,
+}) => {
   return (
-    <>
-      <tr key={user.id}>
-        <td>{user.name}</td>
-        <td>
-          {user.qualities.map((user) => (
-            <Qualitie key={user._id} name={user.name} color={user.color} />
-          ))}
-        </td>
-        <td>{user.profession.name}</td>
-        <td>{user.completedMeetings}</td>
-        <td>{`${user.rate}/5`}</td>
-        <td>
-        <Bookmark userId={user._id} status={user.bookmark}  onToggle={rest.onToggle}/>
-        </td>
-        <td>
-          <button
-            className={"btn btn-danger"}
-            onClick={() => rest.onDelete(user._id)}
-          >
-            Удалить
-          </button>
-        </td>
-      </tr>
-    </>
+    <tr>
+      <td>{name}</td>
+      <td>
+        {qualities.map((qual) => (
+          <Qualitie key={qual._id} {...qual} />
+        ))}
+      </td>
+      <td>{profession.name}</td>
+      <td>{completedMeetings}</td>
+      <td>{rate} /5</td>
+      <td>
+        <Bookmark status={bookmark} onClick={() => onToggleBookMark(_id)} />
+      </td>
+      <td>
+        <button className={"btn btn-danger"} onClick={() => onDelete(_id)}>
+          Удалить
+        </button>
+      </td>
+    </tr>
   );
 };
 
